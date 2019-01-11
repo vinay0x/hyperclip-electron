@@ -43,6 +43,14 @@ const customStyles = {
     ...provided,
     borderRadius: 'none',
     boxShadow: 'none'
+  }),
+  dropdownIndicator: (provided, state) => ({
+    pointerEvents: 'none',
+    display: 'none'
+  }),
+  indicatorSeparator: (provided, state) => ({
+    pointerEvents: 'none',
+    display: 'none'
   })
 }
 
