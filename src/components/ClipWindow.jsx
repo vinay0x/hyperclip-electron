@@ -11,8 +11,11 @@ const customStyles = {
     return {
       ...provided,
       borderBottom: 'none',
-      color: state.isFocused ? 'red' : 'blue',
-      padding: 8
+      color: state.isFocused ? '#f7f7f7' : '#666',
+      padding: 8,
+      backgroundColor: state.isFocused ? '#252b4a' : '#fff',
+      borderRadius: 4,
+      fontWeight: 300
     }
   },
   control: (provided, state) => ({
@@ -43,12 +46,15 @@ const customStyles = {
 }
 
 const ClipWindow = (props) => {
-  const options = props.clipboardValues && props.clipboardValues.map(value => ({ label: value, value }))
+  const options = props.clipboardValues && props.clipboardValues.map(
+    (value, index) => ({ label: `${(index < 10) && '⌘' + (index + 1)}  ${value}`, value })
+  )
   return (
     <Select
       options={ options }
       autoFocus
-      styles={customStyles}
+      menuIsOpen
+      styles={ customStyles }
       value={ null }
       className="r-sel"
       classNamePrefix="r-sel-p"
@@ -57,7 +63,7 @@ const ClipWindow = (props) => {
         hideWindow()
         clipboard.writeText(selected.value)
       } }
-      onMenuOpen={makeWindowBig}
+      onMenuOpen={ makeWindowBig }
     />
   )
 }
