@@ -38,7 +38,7 @@ app.on('ready', async () => {
   const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize
   clipWindow = new BrowserWindow({
     width: parseInt(width / 2),
-    height: parseInt(height / 12.1),
+    height: parseInt(height / 1.94),
     show: true,
     frame: false,
     alwaysOnTop: true,

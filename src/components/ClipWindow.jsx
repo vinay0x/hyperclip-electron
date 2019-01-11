@@ -5,6 +5,7 @@ import propTypes from 'prop-types'
 import '../styles/main.css'
 import { clipboard } from 'electron'
 import { makeWindowBig, hideWindow } from '../helpers/ipcRendererEvents'
+import Animated from 'react-select/lib/animated'
 
 const customStyles = {
   option: (provided, state) => {
@@ -45,30 +46,51 @@ const customStyles = {
   })
 }
 
-const ClipWindow = (props) => {
-  const options = props.clipboardValues && props.clipboardValues.map(
-    (value, index) => ({ label: `${(index < 10) && '⌘' + (index + 1)}  ${value}`, value })
-  )
-  return (
-    <Select
+class ClipWindow extends React.Component {
+  propTypes = {
+    clipboardValues: propTypes.array.isRequired
+  }
+  componentDidMount () {
+    document.onkeydown = e => {
+      if (e.keyCode == 27) hideWindow()
+      if (e.metaKey && (e.keyCode > 47 && e.keyCode < 59)) {
+        if (e.keyCode == 48) {
+          clipboard.writeText(this.props.clipboardValues[9])
+        } else {
+          clipboard.writeText(this.props.clipboardValues[e.keyCode - 49])
+        }
+      }
+    }
+  }
+  componentWillUnmount () {
+    document.onkeydown = null
+  }
+  render () {
+    const options = this.props.clipboardValues && this.props.clipboardValues.map(
+      (value, index) => {
+        const prefix = index < 10 ? ((index != 9) ? `⌘${index + 1} ` : '⌘0 ') : ''
+        return { label: `${prefix}${value}`, value }
+      }
+    )
+
+    return (<Select
       options={ options }
       autoFocus
       menuIsOpen
+      components={Animated()}
       styles={ customStyles }
       value={ null }
       className="r-sel"
       classNamePrefix="r-sel-p"
       placeholder="Search or use arrow keys"
       onChange={ (selected) => {
-        hideWindow()
         clipboard.writeText(selected.value)
+        hideWindow()
       } }
       onMenuOpen={ makeWindowBig }
     />
-  )
-}
-ClipWindow.propTypes = {
-  clipboardValues: propTypes.array.isRequired
+    )
+  }
 }
 
 export default connect(({ clipboard }) => ({ clipboardValues: clipboard }))(ClipWindow)
