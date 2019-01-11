@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 import { connectRouter } from 'connected-react-router'
 
-import count from './count'
+import clipboard from './clipboard'
 
 export default (history) => combineReducers({
   router: connectRouter(history),
-  count
+  clipboard
 })

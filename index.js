@@ -1,8 +1,12 @@
 const path = require('path')
 const electron = require('electron')
 const { app, BrowserWindow } = electron
+const { registerDefaultShortcuts } = require('./src/helpers/shortcuts')
+const { setEvents } = require('./src/helpers/ipcMainEvents')
+const { makePanel, makeKeyWindow } = require('electron-panel-window')
+
 const isDevelopment = process.env.NODE_ENV === 'DEV'
-let mainWindow
+let clipWindow
 let forceQuit = false
 
 const installExtensions = async () => {
@@ -32,13 +36,21 @@ app.on('window-all-closed', () => {
 app.on('ready', async () => {
   app.dock.hide()
   const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize
-  mainWindow = new BrowserWindow({
+  clipWindow = new BrowserWindow({
     width: parseInt(width / 2),
-    height: parseInt(height / 15),
+    height: parseInt(height / 3),
     show: true,
-    frame: false
+    frame: false,
+    alwaysOnTop: true,
+    fullscreenable: false
   })
-
+  clipWindow.setVisibleOnAllWorkspaces(true)
+  // Register shortcut to show window on keypress
+  registerDefaultShortcuts(clipWindow)
+  // Register events
+  // registerDefaultEvents(clipWindow)
+  // Register IPC Events
+  setEvents(clipWindow, app)
   if (isDevelopment) {
     await installExtensions()
     const chokidar = require('chokidar')
@@ -47,40 +59,39 @@ app.on('ready', async () => {
         app.relaunch()
         app.exit()
       })
-    mainWindow.loadURL('http://localhost:4567')
+    clipWindow.loadURL('http://localhost:4567')
   } else {
-    mainWindow.loadFile(path.resolve(path.join(__dirname, './dist/index.html')))
+    clipWindow.loadFile(path.resolve(path.join(__dirname, './dist/index.html')))
   }
 
   // show window once on first load
-  // mainWindow.webContents.once('did-finish-load', () => {
-  //   mainWindow.show()
+  // clipWindow.webContents.once('did-finish-load', () => {
+  //   clipWindow.show()
   // })
-  mainWindow.show()
 
-  mainWindow.webContents.on('did-finish-load', () => {
+  clipWindow.webContents.on('did-finish-load', () => {
     // Handle window logic properly on macOS:
     // 1. App should not terminate if window has been closed
     // 2. Click on icon in dock should re-open the window
     // 3. ⌘+Q should close the window and quit the app
     if (process.platform === 'darwin') {
-      mainWindow.on('close', function (e) {
+      clipWindow.on('close', function (e) {
         if (!forceQuit) {
           e.preventDefault()
-          mainWindow.hide()
+          clipWindow.hide()
         }
       })
 
       app.on('activate', () => {
-        mainWindow.show()
+        clipWindow.show()
       })
 
       app.on('before-quit', () => {
         forceQuit = true
       })
     } else {
-      mainWindow.on('closed', () => {
-        mainWindow = null
+      clipWindow.on('closed', () => {
+        clipWindow = null
       })
     }
   })
