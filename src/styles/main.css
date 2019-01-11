@@ -1,4 +1,6 @@
-body {
-  background: #f7f7f7;
-  color: #1e1e20;
+html {
+  background: transparent !important;
+  color: #fff;
+  font-family: 'San Fransisco', 'Helvetica', 'Arial', 'Sans Serif';
+  -webkit-app-region: drag;
 }

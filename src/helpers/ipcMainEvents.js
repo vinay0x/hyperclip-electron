@@ -8,7 +8,7 @@ const setEvents = (win, app) => {
 
   electron.ipcMain.on('hide', () => {
     const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize
-    win.setSize(parseInt(width / 2), parseInt(height / 15))
+    win.setSize(parseInt(width / 2), parseInt(height / 12.1))
     app.hide()
   })
 }

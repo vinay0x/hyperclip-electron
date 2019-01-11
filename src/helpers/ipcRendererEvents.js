@@ -1,11 +1,11 @@
 const { ipcRenderer } = require('electron')
 
 const makeWindowBig = () => {
-  ipcRenderer.send('setHeightFactor', 3)
+  ipcRenderer.send('setHeightFactor', 1.95)
 }
 
 const makeWindowSmall = () => {
-  ipcRenderer.send('setHeightFactor', 15)
+  ipcRenderer.send('setHeightFactor', 12.1)
 }
 
 const hideWindow = () => {

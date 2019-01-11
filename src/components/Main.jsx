@@ -15,7 +15,7 @@ class Main extends React.Component {
     setInterval(() => {
       const currentClip = clipboard.readText()
       const { clipboardValues, dispatch } = this.props
-      if (currentClip !== clipboardValues[clipboardValues.length - 1]) {
+      if (!!currentClip && (currentClip !== clipboardValues[0])) {
         dispatch(addToClipboard(currentClip))
       }
     }, 500)
