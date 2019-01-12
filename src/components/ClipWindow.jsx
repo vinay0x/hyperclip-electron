@@ -73,6 +73,7 @@ class ClipWindow extends React.Component {
         } else {
           clipboard.writeText(this.props.clipboardValues[e.keyCode - 49])
         }
+        hideWindow()
       }
     }
   }

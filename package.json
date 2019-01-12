@@ -12,7 +12,7 @@
     "wait": "wait-on http://localhost:4567/",
     "electron-wait": "run-s wait electron",
     "electron-package-all": "electron-packager . hypercopy --platform=all",
-    "electron-package-mac": "electron-packager . hypercopy --platform=darwin",
+    "electron-package-mac": "electron-packager . hypercopy --platform=darwin --icon=assets/icons/Main.icns",
     "electron-package-linux": "electron-packager . hypercopy --platform=linux",
     "electron-package-win": "electron-packager . hypercopy --platform=win32",
     "electron-package-mas": "electron-packager . hypercopy --platform=mas",

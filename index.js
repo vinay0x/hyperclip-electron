@@ -53,7 +53,7 @@ app.on('ready', async () => {
     // transparent: true,
     resizable: false
   })
-  const appIcon = new Tray('./assets/icons/Logo@2x.png')
+  const appIcon = new Tray(path.join(__dirname, './assets/icons/Logo@2x.png'))
   const contextMenu = Menu.buildFromTemplate([
     {
       label: 'About Hyperclip',
@@ -80,7 +80,7 @@ app.on('ready', async () => {
   // Register shortcut to show window on keypress
   registerDefaultShortcuts(clipWindow)
   // Register events
-  // clipWindow.on('blur', () => app.hide())
+  clipWindow.on('blur', () => app.hide())
   // Register IPC Events
   setEvents(clipWindow, app)
   if (isDevelopment) {
