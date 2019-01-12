@@ -1,10 +1,9 @@
 import React from 'react'
-import Select, { components } from 'react-select'
+import Select from 'react-select'
 import { connect } from 'react-redux'
 import propTypes from 'prop-types'
 import { clipboard } from 'electron'
 import { hideWindow } from '../helpers/ipcRendererEvents'
-import Animated from 'react-select/lib/animated'
 import CustomOptions from './CustomOptions'
 import '../styles/main.css'
 
