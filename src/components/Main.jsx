@@ -5,7 +5,7 @@ import propTypes from 'prop-types'
 import ClipWindow from './ClipWindow'
 import { addToClipboard } from '../reducers/clipboard'
 
-@connect(({ clipboard, router }) => ({ clipboardValues: clipboard, router }), (dispatch) => ({ dispatch }))
+@connect(({ clipboard, settings, router }) => ({ clipboardValues: clipboard, settings, router }), (dispatch) => ({ dispatch }))
 class Main extends React.Component {
   static propTypes = {
     clipboardValues: propTypes.array.isRequired,

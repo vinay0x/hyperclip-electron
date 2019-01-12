@@ -2,63 +2,69 @@ import React from 'react'
 import Select from 'react-select'
 import { connect } from 'react-redux'
 import propTypes from 'prop-types'
-import '../styles/main.css'
 import { clipboard } from 'electron'
 import { hideWindow } from '../helpers/ipcRendererEvents'
 import Animated from 'react-select/lib/animated'
+import '../styles/main.css'
 
-const customStyles = {
-  option: (provided, state) => {
-    return {
+const getCustomStyles = (darkMode) => {
+  const backgroundColor = darkMode ? '#141d26' : '#fff'
+  return ({
+    option: (provided, state) => {
+      return {
+        ...provided,
+        borderBottom: 'none',
+        color: state.isFocused ? '#fff' : (darkMode ? '#ffffffaa' : '#555'),
+        padding: 8,
+        backgroundColor: state.isFocused ? '#007AFF' : (darkMode ? '#141d26' : '#fff'),
+        fontWeight: 300,
+        borderRadius: 4
+      }
+    },
+    control: (provided, state) => ({
       ...provided,
-      borderBottom: 'none',
-      color: state.isFocused ? '#f7f7f7' : '#666',
-      padding: 8,
-      backgroundColor: state.isFocused ? '#252b4a' : '#fff',
-      borderRadius: 4,
+      backgroundColor,
+      border: 'none',
+      boxShadow: 'none',
+      fontSize: 20,
       fontWeight: 300
-    }
-  },
-  control: (provided, state) => ({
-    ...provided,
-    backgroundColor: '#fff',
-    border: 'none',
-    boxShadow: 'none',
-    fontSize: 20,
-    fontWeight: 300
-  }),
-  placeholder: (provided, state) => ({
-    ...provided,
-    color: '#bbb',
-    fontWeight: '300',
-    fontSize: 20
-  }),
-  input: (provided, state) => ({
-    ...provided,
-    color: '#333',
-    fontWeight: '300',
-    fontSize: 24
-  }),
-  menu: (provided, state) => ({
-    ...provided,
-    borderRadius: 'none',
-    boxShadow: 'none'
-  }),
-  dropdownIndicator: (provided, state) => ({
-    pointerEvents: 'none',
-    display: 'none'
-  }),
-  indicatorSeparator: (provided, state) => ({
-    pointerEvents: 'none',
-    display: 'none'
+    }),
+    placeholder: (provided, state) => ({
+      ...provided,
+      color: darkMode ? '#aaa' : '#bbb',
+      fontWeight: '300',
+      fontSize: 20
+    }),
+    input: (provided, state) => ({
+      ...provided,
+      color: '#333',
+      fontWeight: '300',
+      fontSize: 24
+    }),
+    menu: (provided, state) => ({
+      ...provided,
+      borderRadius: 'none',
+      boxShadow: 'none',
+      backgroundColor
+    }),
+    dropdownIndicator: (provided, state) => ({
+      pointerEvents: 'none',
+      display: 'none'
+    }),
+    indicatorSeparator: (provided, state) => ({
+      pointerEvents: 'none',
+      display: 'none'
+    })
   })
 }
 
 class ClipWindow extends React.Component {
   propTypes = {
-    clipboardValues: propTypes.array.isRequired
+    clipboardValues: propTypes.array.isRequired,
+    settings: propTypes.object.isRequired
   }
   componentDidMount () {
+    this.props.settings.darkMode ? import('../styles/darkMode.css') : import('../styles/lightMode.css')
     document.onkeydown = e => {
       if (e.keyCode == 27) hideWindow()
       if (e.metaKey && (e.keyCode > 47 && e.keyCode < 59)) {
@@ -73,6 +79,9 @@ class ClipWindow extends React.Component {
   componentWillUnmount () {
     document.onkeydown = null
   }
+  componentDidUpdate () {
+    this.props.settings.darkMode ? import('../styles/darkMode.css') : import('../styles/lightMode.css')
+  }
   render () {
     const options = this.props.clipboardValues && this.props.clipboardValues.map(
       (value, index) => {
@@ -86,7 +95,7 @@ class ClipWindow extends React.Component {
       autoFocus
       menuIsOpen
       components={Animated()}
-      styles={ customStyles }
+      styles={ getCustomStyles(this.props.settings.darkMode) }
       value={ null }
       className="r-sel"
       classNamePrefix="r-sel-p"
@@ -100,4 +109,4 @@ class ClipWindow extends React.Component {
   }
 }
 
-export default connect(({ clipboard }) => ({ clipboardValues: clipboard }))(ClipWindow)
+export default connect(({ clipboard, settings }) => ({ clipboardValues: clipboard, settings }))(ClipWindow)

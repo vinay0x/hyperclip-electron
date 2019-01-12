@@ -1,8 +1,11 @@
 const path = require('path')
 const electron = require('electron')
+const { Tray, Menu } = electron
+const open = require('open')
 const { app, BrowserWindow } = electron
 const { registerDefaultShortcuts } = require('./src/helpers/shortcuts')
 const { setEvents } = require('./src/helpers/ipcMainEvents')
+const settings = require('electron-settings')
 
 const isDevelopment = process.env.NODE_ENV === 'DEV'
 let clipWindow
@@ -50,11 +53,34 @@ app.on('ready', async () => {
     // transparent: true,
     resizable: false
   })
+  const appIcon = new Tray('./assets/icons/Logo@2x.png')
+  const contextMenu = Menu.buildFromTemplate([
+    {
+      label: 'About Hyperclip',
+      click () {
+        open('https://github.com/o-my-code/hyperclip')
+      }
+    },
+    {
+      label: 'Dark Mode',
+      type: 'checkbox',
+      checked: settings.get('darkMode'),
+      click (e) {
+        settings.set('darkMode', e.checked)
+      }
+    },
+    {
+      label: 'Quit',
+      click () {
+        app.quit()
+      } }
+  ])
+  appIcon.setContextMenu(contextMenu)
   clipWindow.setVisibleOnAllWorkspaces(true)
   // Register shortcut to show window on keypress
   registerDefaultShortcuts(clipWindow)
   // Register events
-  clipWindow.on('blur', () => app.hide())
+  // clipWindow.on('blur', () => app.hide())
   // Register IPC Events
   setEvents(clipWindow, app)
   if (isDevelopment) {
@@ -65,8 +91,7 @@ app.on('ready', async () => {
         app.relaunch()
         app.exit()
       })
-    // clipWindow.loadURL('http://localhost:4567')
-    clipWindow.loadFile(path.resolve(path.join(__dirname, './dist/index.html')))
+    clipWindow.loadURL('http://localhost:4567')
   } else {
     clipWindow.loadFile(path.resolve(path.join(__dirname, './dist/index.html')))
   }

@@ -21,9 +21,10 @@ const persistConfig = {
 }
 // Enhance reducers with redux-persist
 const persistedReducer = persistReducer(persistConfig, rootReducer)
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   persistedReducer,
-  compose(
+  composeEnhancers(
     applyMiddleware(
       thunk,
       routerMiddleware(history)
