@@ -1,11 +1,11 @@
 import React from 'react'
-import Routes from '../routes'
 import { connect } from 'react-redux'
-import { clipboard, ipcRenderer } from 'electron'
+import { clipboard } from 'electron'
 import propTypes from 'prop-types'
+import ClipWindow from './ClipWindow'
 import { addToClipboard } from '../reducers/clipboard'
 
-@connect(({ clipboard }) => ({ clipboardValues: clipboard }), (dispatch) => ({ dispatch }))
+@connect(({ clipboard, router }) => ({ clipboardValues: clipboard, router }), (dispatch) => ({ dispatch }))
 class Main extends React.Component {
   static propTypes = {
     clipboardValues: propTypes.array.isRequired,
@@ -22,7 +22,7 @@ class Main extends React.Component {
   }
   render () {
     return (
-      <Routes />
+      <ClipWindow />
     )
   }
 }

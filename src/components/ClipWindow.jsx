@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import propTypes from 'prop-types'
 import '../styles/main.css'
 import { clipboard } from 'electron'
-import { makeWindowBig, hideWindow } from '../helpers/ipcRendererEvents'
+import { hideWindow } from '../helpers/ipcRendererEvents'
 import Animated from 'react-select/lib/animated'
 
 const customStyles = {
@@ -95,7 +95,6 @@ class ClipWindow extends React.Component {
         clipboard.writeText(selected.value)
         hideWindow()
       } }
-      onMenuOpen={ makeWindowBig }
     />
     )
   }

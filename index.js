@@ -3,7 +3,6 @@ const electron = require('electron')
 const { app, BrowserWindow } = electron
 const { registerDefaultShortcuts } = require('./src/helpers/shortcuts')
 const { setEvents } = require('./src/helpers/ipcMainEvents')
-const { makePanel, makeKeyWindow } = require('electron-panel-window')
 
 const isDevelopment = process.env.NODE_ENV === 'DEV'
 let clipWindow
@@ -33,6 +32,11 @@ app.on('window-all-closed', () => {
   }
 })
 
+app.setLoginItemSettings({
+  openAtLogin: true,
+  openAsHidden: true
+})
+
 app.on('ready', async () => {
   app.dock.hide()
   const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize
@@ -50,7 +54,7 @@ app.on('ready', async () => {
   // Register shortcut to show window on keypress
   registerDefaultShortcuts(clipWindow)
   // Register events
-  // registerDefaultEvents(clipWindow)
+  clipWindow.on('blur', () => app.hide())
   // Register IPC Events
   setEvents(clipWindow, app)
   if (isDevelopment) {
@@ -61,7 +65,8 @@ app.on('ready', async () => {
         app.relaunch()
         app.exit()
       })
-    clipWindow.loadURL('http://localhost:4567')
+    // clipWindow.loadURL('http://localhost:4567')
+    clipWindow.loadFile(path.resolve(path.join(__dirname, './dist/index.html')))
   } else {
     clipWindow.loadFile(path.resolve(path.join(__dirname, './dist/index.html')))
   }
