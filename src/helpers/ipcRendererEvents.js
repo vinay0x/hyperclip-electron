@@ -3,14 +3,6 @@ const { store } = require('../store')
 const settings = require('electron').remote.require('electron-settings')
 const { setDarkMode } = require('../reducers/settings')
 
-const makeWindowBig = () => {
-  ipcRenderer.send('setHeightFactor', 1.95)
-}
-
-const makeWindowSmall = () => {
-  ipcRenderer.send('setHeightFactor', 12.1)
-}
-
 const hideWindow = () => {
   ipcRenderer.send('hide')
 }
@@ -25,7 +17,5 @@ const hideWindow = () => {
 })()
 
 module.exports = {
-  makeWindowBig,
-  makeWindowSmall,
   hideWindow
 }
