@@ -37,7 +37,7 @@ const getCustomStyles = (darkMode) => {
     }),
     input: (provided, state) => ({
       ...provided,
-      color: '#333',
+      color: darkMode ? '#fff' :'#333',
       fontWeight: '300',
       fontSize: 24
     }),

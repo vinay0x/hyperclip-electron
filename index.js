@@ -10,6 +10,8 @@ const settings = require('electron-settings')
 const isDevelopment = process.env.NODE_ENV === 'DEV'
 let clipWindow
 let forceQuit = false
+// To fix the garbage collection issue
+let appIcon
 
 const installExtensions = async () => {
   console.log('Installing extensions')
@@ -53,7 +55,7 @@ app.on('ready', async () => {
     // transparent: true,
     resizable: false
   })
-  const appIcon = new Tray(path.join(__dirname, './assets/icons/Logo@2x.png'))
+  appIcon = new Tray(path.join(__dirname, './assets/icons/Logo@2x.png'))
   const contextMenu = Menu.buildFromTemplate([
     {
       label: 'About Hyperclip',
