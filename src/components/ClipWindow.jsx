@@ -64,7 +64,9 @@ class ClipWindow extends React.Component {
     settings: propTypes.object.isRequired
   }
   componentDidMount () {
-    this.props.settings.darkMode ? import('../styles/darkMode.css') : import('../styles/lightMode.css')
+    this.props.settings.darkMode
+      ? document.body.style.backgroundColor = '#141d26'
+      : document.body.style.backgroundColor = '#fff'
     document.onkeydown = e => {
       if (e.keyCode == 27) hideWindow()
       if (e.metaKey && (e.keyCode > 47 && e.keyCode < 59)) {
@@ -81,7 +83,9 @@ class ClipWindow extends React.Component {
     document.onkeydown = null
   }
   componentDidUpdate () {
-    this.props.settings.darkMode ? import('../styles/darkMode.css') : import('../styles/lightMode.css')
+    this.props.settings.darkMode
+      ? document.body.style.backgroundColor = '#141d26'
+      : document.body.style.backgroundColor = '#fff'
   }
   render () {
     const options = this.props.clipboardValues && this.props.clipboardValues.map(
