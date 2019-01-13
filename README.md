@@ -20,7 +20,7 @@ As a developer I spend a lot of my time copy pasting stuff. I wanted to make it 
 * Shortcuts for the last 10 clipboard items
 * Start on boot
 * Built with React and React Select
-* Started from Electrojet boilerpolate
+* Started from <a href="https://github.com/o-my-code/electrojet">Electrojet</a> boilerpolate
 * FREE! 
 
 ## Screenshots
@@ -36,7 +36,7 @@ As a developer I spend a lot of my time copy pasting stuff. I wanted to make it 
 
 ## Installation
 
-Download the DMG from Github Releases
+Download the DMG from <a href="https://github.com/o-my-code/hyperclip/releases/tag/beta">Github Releases>a>
 
 ## Usage
 
