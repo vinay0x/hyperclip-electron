@@ -5,5 +5,5 @@
 </p>
 
 <p align="center">
-  A Hypercharged modern clipboard.
+  A Hypercharged, fast modern clipboard 
 </p>
