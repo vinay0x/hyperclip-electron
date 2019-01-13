@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="ohmycode.in/">
+  <a href="https://github.com/o-my-code/hyperclip/releases/tag/beta/">
     <img alt="GitPoint" title="GitPoint" src="https://i.ibb.co/FX28Rhj/Group-2-4.png" width="400">
   </a>
 </p>
@@ -10,6 +10,9 @@
 
 ## Introduction
 As a developer I spend a lot of my time copy pasting stuff. I wanted to make it simple. My initial goto tool was CopyClip which lacked keyboard shortcuts and hotkeys. Then I used Cutbox which had both but the search was painstakingly slow. So here it is, a fast, goodlooking clipboard manager built with Electron.
+
+#### Current Version
+##### macOS Beta - <a href="https://github.com/o-my-code/hyperclip/releases/tag/beta">Download Now</a>
 
 ## Features
 
@@ -36,7 +39,7 @@ As a developer I spend a lot of my time copy pasting stuff. I wanted to make it 
 
 ## Installation
 
-Download the DMG from <a href="https://github.com/o-my-code/hyperclip/releases/tag/beta">Github Releases>a>
+Download the DMG from <a href="https://github.com/o-my-code/hyperclip/releases/tag/beta">Github Releases</a>
 
 ## Usage
 
@@ -44,3 +47,9 @@ Download the DMG from <a href="https://github.com/o-my-code/hyperclip/releases/t
 * App will automatically hide on start. Press the global hotkey `⌘ + Shift + L` to bring up the clipboard.
 * Search or use arrow keys to navigate.
 * Press Enter to copy it to clipboard again. Or alternatively use the shortcuts `⌘ + 0` - `⌘ + 9` to copy them!
+
+## Contributors
+##### Vinay Chandran
+
+## Acknowledgments
+<b>[React Select](https://react-select.com)</b> by JedWatson
