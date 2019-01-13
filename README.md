@@ -1,6 +1,6 @@
 <p align="center">
   <a href="ohmycode.in/">
-    <img alt="GitPoint" title="GitPoint" src="https://i.ibb.co/wRmYzLk/Group-2-2.png" width="400">
+    <img alt="GitPoint" title="GitPoint" src="https://i.ibb.co/Qnxt0QV/Group-2-3.png" width="400">
   </a>
 </p>
 
