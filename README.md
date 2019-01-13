@@ -1,7 +1,6 @@
-<h1 align="center"> HyperClip </h1> <br>
 <p align="center">
   <a href="ohmycode.in/">
-    <img alt="GitPoint" title="GitPoint" src="https://i.ibb.co/7bG0fbs/Group-2-1.png" width="450">
+    <img alt="GitPoint" title="GitPoint" src="https://i.ibb.co/wRmYzLk/Group-2-2.png" width="400">
   </a>
 </p>
 
