@@ -78,7 +78,7 @@ app.on('ready', async () => {
       } }
   ])
   appIcon.setContextMenu(contextMenu)
-  clipWindow.setVisibleOnAllWorkspaces(true)
+  clipWindow.setVisibleOnAllWorkspaces(false)
   // Register shortcut to show window on keypress
   registerDefaultShortcuts(clipWindow)
   // Register events

@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { clipboard } from 'electron'
 import propTypes from 'prop-types'
 import ClipWindow from './ClipWindow'
+import Splash from './Splash'
+import Settings from './Settings'
 import { addToClipboard } from '../reducers/clipboard'
 import isEqual from 'lodash/isEqual'
 
@@ -10,7 +12,8 @@ import isEqual from 'lodash/isEqual'
 class Main extends React.Component {
   static propTypes = {
     clipboardValues: propTypes.array.isRequired,
-    dispatch: propTypes.func.isRequired
+    dispatch: propTypes.func.isRequired,
+    settings: propTypes.object.isRequired
   }
   componentDidMount () {
     setInterval(() => {
@@ -24,9 +27,10 @@ class Main extends React.Component {
     }, 500)
   }
   render () {
-    return (
-      <ClipWindow />
-    )
+    const { settings } = this.props
+    if (settings.firstLoad) return <Splash />
+    else if (settings.showSettings) return <Settings />
+    else return <ClipWindow />
   }
 }
 
