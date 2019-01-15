@@ -26,6 +26,14 @@ As a developer I spend a lot of my time copy pasting stuff. I wanted to make it 
 * Started from <a href="https://github.com/o-my-code/electrojet">Electrojet</a> boilerpolate
 * FREE! 
 
+## To-do
+
+- [x] Shortcut Setting
+- [ ] React Virtualized Select for vastly better performance
+- [ ] Custom search filter by @bvaughn for blazing fast search
+- [ ] Multi platform support 
+- [ ] Tests
+
 ## Screenshots
 
 
