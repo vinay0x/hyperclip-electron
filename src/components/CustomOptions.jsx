@@ -1,4 +1,4 @@
-import Select, { components } from 'react-select'
+import { components } from 'react-select'
 import React from 'react'
 
 const CustomOptions = (props) => {

@@ -82,7 +82,7 @@ app.on('ready', async () => {
   // Register shortcut to show window on keypress
   registerDefaultShortcuts(clipWindow)
   // Register events
-  // clipWindow.on('blur', () => app.hide())
+  clipWindow.on('blur', () => app.hide())
   // Register IPC Events
   setEvents(clipWindow, app)
   if (isDevelopment) {

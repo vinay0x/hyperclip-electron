@@ -7,7 +7,7 @@ class Settings extends React.Component {
   render () {
     return (
       <div>
-        <p>This is the settings page!</p>
+        Enter the desired shortcut combo. Make sure it's something that doesn't conflict with other shortcuts
       </div>
     )
   }

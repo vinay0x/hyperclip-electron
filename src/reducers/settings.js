@@ -18,7 +18,7 @@ export const setFirstLoad = (payload) => ({
 })
 
 const initialState = {
-  darkMode: false,
+  darkMode: true,
   showSettings: true,
   firstLoad: true
 }

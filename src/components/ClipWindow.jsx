@@ -1,5 +1,5 @@
 import React from 'react'
-import Select from 'react-select'
+import Select, { createFilter } from 'react-select'
 import { connect } from 'react-redux'
 import propTypes from 'prop-types'
 import { clipboard } from 'electron'
@@ -37,7 +37,7 @@ const getCustomStyles = (darkMode) => {
     }),
     input: (provided, state) => ({
       ...provided,
-      color: darkMode ? '#fff' :'#333',
+      color: darkMode ? '#fff' : '#333',
       fontWeight: '300',
       fontSize: 24
     }),
@@ -96,9 +96,12 @@ class ClipWindow extends React.Component {
         return { label: label || value, value, prefix }
       }
     )
-
     return (<Select
+      escapeClearsValue
       options={ options }
+      filterOption={createFilter({
+        ignoreAccents: false
+      })}
       autoFocus
       menuIsOpen
       styles={ getCustomStyles(this.props.settings.darkMode) }
@@ -116,4 +119,4 @@ class ClipWindow extends React.Component {
   }
 }
 
-export default connect(({ clipboard, settings }) => ({ clipboardValues: clipboard, settings }))(ClipWindow)
+export default connect(({ clipboard, settings }) => ({ clipboardValues: clipboard.slice(0, 200), settings }))(ClipWindow)

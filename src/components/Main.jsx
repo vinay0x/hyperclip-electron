@@ -29,7 +29,6 @@ class Main extends React.Component {
   render () {
     const { settings } = this.props
     if (settings.firstLoad) return <Splash />
-    else if (settings.showSettings) return <Settings />
     else return <ClipWindow />
   }
 }
