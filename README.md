@@ -19,7 +19,6 @@ As a developer I spend a lot of my time copy pasting stuff. I wanted to make it 
 * Fast 🚀From loading the popup to searching, everything is a breeze.
 * Dark Mode! Yes!
 * Works with a global shortcut `⌘+Shift+L`
-* Unlimited scrollback.
 * Shortcuts for the last 10 clipboard items
 * Start on boot
 * Built with React and React Select
