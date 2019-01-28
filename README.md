@@ -12,7 +12,7 @@
 As a developer I spend a lot of my time copy pasting stuff. I wanted to make it simple. My initial goto tool was CopyClip which lacked keyboard shortcuts and hotkeys. Then I used Cutbox which had both but the search was painstakingly slow. So here it is, a fast, goodlooking clipboard manager built with Electron.
 
 #### Current Version
-##### macOS Beta - <a href="https://github.com/o-my-code/hyperclip/releases/download/Beta/HyperClip.dmg">Download Now</a>
+##### macOS Beta - <a href="https://github.com/o-my-code/hyperclip/releases/latest">Download Now</a>
 
 ## Features
 
