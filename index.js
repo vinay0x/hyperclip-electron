@@ -43,7 +43,7 @@ app.setLoginItemSettings({
 })
 
 app.on('ready', async () => {
-  app.dock.hide()
+  // app.dock.hide()
   const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize
   clipWindow = new BrowserWindow({
     width: parseInt(width / 2),
@@ -72,6 +72,12 @@ app.on('ready', async () => {
       }
     },
     {
+      label: 'Clear History',
+      click (e) {
+        clipWindow.webContents.send('clearClipboard')
+      }
+    },
+    {
       label: 'Quit',
       click () {
         app.quit()
@@ -82,7 +88,7 @@ app.on('ready', async () => {
   // Register shortcut to show window on keypress
   registerDefaultShortcuts(clipWindow)
   // Register events
-  clipWindow.on('blur', () => app.hide())
+  // clipWindow.on('blur', () => app.hide())
   // Register IPC Events
   setEvents(clipWindow, app)
   if (isDevelopment) {

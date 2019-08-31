@@ -26,8 +26,8 @@
     "electron-panel-window": "^2.0.0-1",
     "electron-settings": "^3.2.0",
     "electron-store": "^2.0.0",
-    "lodash": "^4.17.11",
-    "open": "0.0.5",
+    "lodash": "^4.17.15",
+    "open": "^6.4.0",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
@@ -37,7 +37,8 @@
     "redux": "^4.0.1",
     "redux-persist": "^5.10.0",
     "redux-persist-electron-storage": "^2.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "sendkeys-js": "0.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -63,6 +64,7 @@
     "html-webpack-plugin": "^3.2.0",
     "imports-loader": "^0.8.0",
     "mini-css-extract-plugin": "^0.5.0",
+    "node-key-sender": "^1.0.11",
     "npm-run-all": "^4.1.5",
     "wait-on": "^3.2.0",
     "webpack": "^4.28.2",

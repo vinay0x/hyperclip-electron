@@ -3,7 +3,7 @@ import Select, { createFilter } from 'react-select'
 import { connect } from 'react-redux'
 import propTypes from 'prop-types'
 import { clipboard } from 'electron'
-import { hideWindow } from '../helpers/ipcRendererEvents'
+import { hideWindow, sendKeys } from '../helpers/ipcRendererEvents'
 import CustomOptions from './CustomOptions'
 import '../styles/main.css'
 
@@ -17,7 +17,7 @@ const getCustomStyles = (darkMode) => {
         color: state.isFocused ? '#fff' : (darkMode ? '#ffffffaa' : '#555'),
         padding: 4,
         backgroundColor: state.isFocused ? '#007AFF' : (darkMode ? '#141d26' : '#fff'),
-        fontWeight: 300,
+        fontWeight: 500,
         borderRadius: 4
       }
     },
@@ -33,27 +33,36 @@ const getCustomStyles = (darkMode) => {
       ...provided,
       color: darkMode ? '#aaa' : '#bbb',
       fontWeight: '300',
-      fontSize: 20
+      fontSize: 20,
+      cursor: 'text',
     }),
     input: (provided, state) => ({
       ...provided,
       color: darkMode ? '#fff' : '#333',
       fontWeight: '300',
-      fontSize: 24
+      fontSize: 24,
+      cursor: 'text',
+      width: '100%'
     }),
     menu: (provided, state) => ({
       ...provided,
       borderRadius: 'none',
       boxShadow: 'none',
-      backgroundColor
+      backgroundColor,
+      maxHeight: 'none'
+    }),
+    menuList: (provided, state) => ({
+      ...provided,
+      borderRadius: 'none',
+      boxShadow: 'none',
+      backgroundColor,
+      maxHeight: '85vh'
     }),
     dropdownIndicator: (provided, state) => ({
-      pointerEvents: 'none',
-      display: 'none'
+      ...provided
     }),
     indicatorSeparator: (provided, state) => ({
-      pointerEvents: 'none',
-      display: 'none'
+      ...provided
     })
   })
 }
@@ -103,6 +112,7 @@ class ClipWindow extends React.Component {
         ignoreAccents: false
       })}
       autoFocus
+      isClearable
       menuIsOpen
       styles={ getCustomStyles(this.props.settings.darkMode) }
       value={ null }
@@ -112,6 +122,7 @@ class ClipWindow extends React.Component {
       placeholder="Search or use arrow keys"
       onChange={ (selected) => {
         clipboard.writeText(selected.value)
+        sendKeys(selected.value)
         hideWindow()
       } }
     />

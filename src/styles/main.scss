@@ -1,6 +1,12 @@
+@import '~@blueprintjs/core/lib/css/blueprint.css';
+@import '~@blueprintjs/select/lib/css/blueprint-select.css';
 html {
   font-family: 'San Fransisco', 'Helvetica', 'Arial', 'Sans Serif';
-  /* -webkit-app-region: drag; */
+  // -webkit-app-region: drag;
+}
+
+body{
+  background:  transparent;
 }
 
 .splash_container{
